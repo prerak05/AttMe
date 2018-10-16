@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Att Me</string>
+    <string name="abcd">abcdefghijklmnopqrstuvwxyz0123456789@.</string>
+    <string name="chnage_password"><u>Chnage Password</u></string>
+    <string name="no_internet">Sorry!!! There\'s no network connectivity.</string>
+    <string name="failure">Sorry!!! Something went wrong. Please try again.</string>
+    <string name="toast_server_error">Oops something went wrong!!!  Please try again.</string>
+    <string name="login_success">Congratulations!!! You have logged in successfully. &#160;</string>
+</resources>
