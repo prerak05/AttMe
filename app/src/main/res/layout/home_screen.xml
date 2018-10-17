@@ -5,16 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
 
     <include layout="@layout/toolbar" />
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar">
@@ -29,128 +24,137 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <HorizontalScrollView
+                <!--
+                                <HorizontalScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="none">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/_60sdp"
+                                        android:layout_marginTop="@dimen/_10sdp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/_100sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginLeft="@dimen/_5sdp"
+                                            android:layout_marginRight="@dimen/_5sdp"
+                                            android:background="@drawable/btn_white"
+                                            android:backgroundTint="@color/light_grey"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <CustomFonts.TextView_Regular
+                                                android:id="@+id/tv_subjectName"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Subject Name"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+
+                                            <CustomFonts.TextView_Regular
+                                                android:id="@+id/tv_percentage"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="@dimen/_5sdp"
+                                                android:text="50 %"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/_100sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginLeft="@dimen/_5sdp"
+                                            android:layout_marginRight="@dimen/_5sdp"
+                                            android:background="@drawable/btn_white"
+                                            android:backgroundTint="@color/light_grey"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <CustomFonts.TextView_Regular
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Subject Name"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+
+                                            <CustomFonts.TextView_Regular
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="@dimen/_5sdp"
+                                                android:text="50 %"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/_100sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginLeft="@dimen/_5sdp"
+                                            android:layout_marginRight="@dimen/_5sdp"
+                                            android:background="@drawable/btn_white"
+                                            android:backgroundTint="@color/light_grey"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <CustomFonts.TextView_Regular
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Subject Name"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+
+                                            <CustomFonts.TextView_Regular
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="@dimen/_5sdp"
+                                                android:text="50 %"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="@dimen/_100sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginLeft="@dimen/_5sdp"
+                                            android:layout_marginRight="@dimen/_5sdp"
+                                            android:background="@drawable/btn_white"
+                                            android:backgroundTint="@color/light_grey"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <CustomFonts.TextView_Regular
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Subject Name"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+
+                                            <CustomFonts.TextView_Regular
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="@dimen/_5sdp"
+                                                android:text="50 %"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_12sdp" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </HorizontalScrollView>
+                -->
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_60sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_60sdp"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/btn_white"
-                            android:backgroundTint="@color/light_grey"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <CustomFonts.TextView_Regular
-                                android:id="@+id/tv_subjectName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Subject Name"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-
-                            <CustomFonts.TextView_Regular
-                                android:id="@+id/tv_percentage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_5sdp"
-                                android:text="50 %"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_60sdp"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/btn_white"
-                            android:backgroundTint="@color/light_grey"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <CustomFonts.TextView_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Subject Name"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-
-                            <CustomFonts.TextView_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_5sdp"
-                                android:text="50 %"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_60sdp"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/btn_white"
-                            android:backgroundTint="@color/light_grey"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <CustomFonts.TextView_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Subject Name"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-
-                            <CustomFonts.TextView_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_5sdp"
-                                android:text="50 %"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_60sdp"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/btn_white"
-                            android:backgroundTint="@color/light_grey"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <CustomFonts.TextView_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Subject Name"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-
-                            <CustomFonts.TextView_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_5sdp"
-                                android:text="50 %"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </HorizontalScrollView>
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_white" />
 
                 <View
                     android:layout_width="match_parent"
@@ -183,4 +187,12 @@
             </LinearLayout>
         </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
 </RelativeLayout>

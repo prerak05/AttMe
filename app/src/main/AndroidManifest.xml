@@ -50,5 +50,10 @@
             android:name=".ProfileScreen.UpdateProfile"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".SubjectAttendanceScreen.SubjectAttendance"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
 </manifest>

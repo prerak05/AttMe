@@ -6,13 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.attme.HomeScreen.model.SubjectList;
 import com.attme.R;
 
 import java.util.List;
 
 public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.MyViewHolder> {
 
-    private List<Subject_Get_Set> subjectGetSetList;
+    private List<SubjectList> subjectLists;
+    private RecyclerItemClickListener recyclerItemClickListener;
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_subjectName;
@@ -23,8 +26,9 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.
         }
     }
 
-    public SubjectListAdapter(List<Subject_Get_Set> filesGetSetList) {
-        this.subjectGetSetList = filesGetSetList;
+    public SubjectListAdapter(List<SubjectList> filesGetSetList, RecyclerItemClickListener recyclerItemClickListener) {
+        this.subjectLists = filesGetSetList;
+        this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
     @Override
@@ -35,14 +39,26 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.
         return new MyViewHolder(itemView);
     }
 
+
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final Subject_Get_Set filesGetSet = subjectGetSetList.get(position);
-        holder.tv_subjectName.setText(filesGetSet.getTv_subjectName());
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        if (subjectLists != null && subjectLists.size() > 0) {
+            holder.tv_subjectName.setText(subjectLists.get(position).getName());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recyclerItemClickListener.onItemClick(subjectLists.get(position));
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return subjectGetSetList.size();
+        return subjectLists.size();
+    }
+
+    public interface RecyclerItemClickListener {
+        void onItemClick(SubjectList subjectList);
     }
 }

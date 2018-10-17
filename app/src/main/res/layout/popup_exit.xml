@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_35sdp"
                     android:gravity="center"
-                    android:text="Are you sure you want to quit Att Me?"
+                    android:text="Are you sure you want to logout in Att Me?"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp" />
 

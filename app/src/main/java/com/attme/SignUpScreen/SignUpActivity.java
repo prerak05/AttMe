@@ -152,11 +152,14 @@ public class SignUpActivity extends Activity {
             if (AppUtils.isNetworkAvailable(SignUpActivity.this)) {
                 ll_ProgressBar.setVisibility(View.VISIBLE);
                 ll_ProgressBar.setClickable(false);
-                Map<String, String> loginMap = new HashMap<>();
-                loginMap.put("email", str_emailId);
-                loginMap.put("password", str_password);
+                Map<String, String> registrationMap = new HashMap<>();
+                registrationMap.put("name", str_fullName);
+                registrationMap.put("studentid", str_studentId);
+                registrationMap.put("password", str_password);
+                registrationMap.put("email", str_emailId);
+                registrationMap.put("phone", str_phoneNo);
                 mApiService = Retro.setupRetrofit(Retro.baseURL);
-                Call<Login> loginCall = mApiService.loginCall(loginMap);
+                Call<Login> loginCall = mApiService.getRegistration(registrationMap);
                 Log.d("url", loginCall.request().url().toString());
                 loginCall.enqueue(new Callback<Login>() {
                     @Override
