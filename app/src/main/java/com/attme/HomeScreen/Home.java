@@ -18,19 +18,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.attme.HomeScreen.model.SubjectAttendance;
 import com.attme.HomeScreen.model.SubjectList;
 import com.attme.LoginScreen.LoginActivity;
 import com.attme.LoginScreen.model.Login;
 import com.attme.R;
-import com.attme.SubjectAttendanceScreen.SubjectAttendance;
+
 import com.attme.remote.ApiService;
 import com.attme.remote.Retro;
 import com.attme.util.AppUtils;
 import com.attme.util.ShardPref;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +44,7 @@ public class Home extends Activity {
     private ImageView toolbar_img_1, toolbar_img_2;
     private SubjectList subject;
     private List<SubjectList> subjectLists = new ArrayList<>();
+    private List<SubjectAttendance> attendanceList = new ArrayList<>();
     private RecyclerView recyclerView, recyclerHorizontal;
     private SubjectListAdapter mAdapter;
     private RelativeLayout relative;
@@ -66,16 +65,62 @@ public class Home extends Activity {
         // Todo :- onClick
         onClick();
 
-        subjectListServiceCall();
-        initSwipeToRefresh();
-        initHorizontalList();
+
     }
 
-    private void initHorizontalList() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        subjectListServiceCall();
+        initSwipeToRefresh();
+        subjectAttandanceServiceCall();
+    }
+
+    private void subjectAttandanceServiceCall() {
+        if (AppUtils.isNetworkAvailable(this)) {
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setClickable(false);
+            Map<String, String> map = new HashMap<>();
+            map.put("studentid", new ShardPref(Home.this).getValue("studentId", ""));
+            apiService = Retro.setupRetrofit(Retro.baseURL);
+            Call<List<SubjectAttendance>> listCall = apiService.doAttendanceCall(map);
+            Log.d("url", listCall.request().url().toString());
+            listCall.enqueue(new Callback<List<SubjectAttendance>>() {
+                @Override
+                public void onResponse(Call<List<SubjectAttendance>> call, Response<List<SubjectAttendance>> response) {
+                    progressBar.setVisibility(View.GONE);
+                    if (response.body() != null && response.body().size() > 0) {
+                        attendanceList = response.body();
+                        initHorizontalList(attendanceList);
+                    } else {
+                        Snackbar snackbar = Snackbar
+                                .make(relative, getString(R.string.toast_server_error), Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<SubjectAttendance>> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    Snackbar snackbar = Snackbar
+                            .make(relative, getString(R.string.failure), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            });
+        } else {
+            Snackbar snackbar = Snackbar
+                    .make(relative, getString(R.string.no_internet), Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+    }
+
+    private void initHorizontalList(List<SubjectAttendance> attendanceList) {
         recyclerHorizontal.setHasFixedSize(true);
         recyclerHorizontal.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
-        horizontalSubjectAdapter = new HorizontalSubjectAdapter(this);
-        recyclerHorizontal.setAdapter(horizontalSubjectAdapter);
+        if (attendanceList.size() > 0) {
+            horizontalSubjectAdapter = new HorizontalSubjectAdapter(this, attendanceList);
+            recyclerHorizontal.setAdapter(horizontalSubjectAdapter);
+        }
     }
 
     private void initSwipeToRefresh() {
@@ -83,7 +128,9 @@ public class Home extends Activity {
             @Override
             public void onRefresh() {
                 subjectLists.clear();
+                attendanceList.clear();
                 subjectListServiceCall();
+                subjectAttandanceServiceCall();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -94,7 +141,8 @@ public class Home extends Activity {
         public void onItemClick(final SubjectList subjectList1) {
             if (AppUtils.isNetworkAvailable(Home.this)) {
                 Map<String, String> map = new HashMap<>();
-                map.put("studentid", subjectList1.getId().toString());
+//                map.put("studentid", subjectList1.getId().toString());
+                map.put("studentid", new ShardPref(Home.this).getValue("studentId", ""));
                 map.put("subjectname", subjectList1.getName());
                 apiService = Retro.setupRetrofit(Retro.baseURL);
                 Call<Login> registerCall = apiService.doRegisterSubject(map);
@@ -134,7 +182,7 @@ public class Home extends Activity {
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setClickable(false);
             apiService = Retro.setupRetrofit(Retro.baseURL);
-            Call<List<SubjectList>> subjectListCall = apiService.getSubjectListCall();
+            final Call<List<SubjectList>> subjectListCall = apiService.getSubjectListCall();
             Log.d("url", subjectListCall.request().url().toString());
             subjectListCall.enqueue(new Callback<List<SubjectList>>() {
                 @Override
@@ -151,6 +199,11 @@ public class Home extends Activity {
                         recyclerView.setLayoutManager(mLayoutManager);
                         recyclerView.setItemAnimator(new DefaultItemAnimator());
                         recyclerView.setAdapter(mAdapter);
+                        if (subjectLists.size() == 0) {
+                            Snackbar snackbar = Snackbar
+                                    .make(relative, getString(R.string.no_subject_available), Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
                     } else {
                         Snackbar snackbar = Snackbar
                                 .make(relative, getString(R.string.toast_server_error), Snackbar.LENGTH_LONG);

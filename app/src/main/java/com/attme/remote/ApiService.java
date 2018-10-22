@@ -1,5 +1,6 @@
 package com.attme.remote;
 
+import com.attme.HomeScreen.model.SubjectAttendance;
 import com.attme.HomeScreen.model.SubjectList;
 import com.attme.LoginScreen.model.Login;
 
@@ -11,6 +12,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 /**
  * Created by prerak on 16/10/18.
@@ -34,5 +36,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/api/checkin")
-    Call<Login> doAttendance(@FieldMap Map<String,String> param);
+    Call<Login> doAttendance(@FieldMap Map<String, String> param);
+
+    @GET("/api/attendance")
+    Call<List<SubjectAttendance>> doAttendanceCall(@QueryMap() Map<String, String> param);
 }

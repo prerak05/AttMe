@@ -8,9 +8,13 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Login {
+
     @SerializedName("output")
     @Expose
     private String output;
+    @SerializedName("studentid")
+    @Expose
+    private String studentid;
 
     public String getOutput() {
         return output;
@@ -18,5 +22,13 @@ public class Login {
 
     public void setOutput(String output) {
         this.output = output;
+    }
+
+    public String getStudentid() {
+        return studentid;
+    }
+
+    public void setStudentid(String studentid) {
+        this.studentid = studentid;
     }
 }

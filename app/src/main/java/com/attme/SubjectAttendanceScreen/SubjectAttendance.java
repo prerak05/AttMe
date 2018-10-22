@@ -18,6 +18,7 @@ import com.attme.R;
 import com.attme.remote.ApiService;
 import com.attme.remote.Retro;
 import com.attme.util.AppUtils;
+import com.attme.util.ShardPref;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -75,7 +76,7 @@ public class SubjectAttendance extends Activity {
                         progressBar.setVisibility(View.VISIBLE);
                         progressBar.setClickable(false);
                         Map<String, String> map = new HashMap<>();
-                        map.put("studentid", sId);
+                        map.put("studentid", new ShardPref(SubjectAttendance.this).getValue("studentId", ""));
                         map.put("subjectname", sSubjectName);
                         ApiService apiService = Retro.setupRetrofit(Retro.baseURL);
                         Call<Login> attendanceCall = apiService.doAttendance(map);

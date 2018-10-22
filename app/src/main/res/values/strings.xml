@@ -7,4 +7,6 @@
     <string name="toast_server_error">Oops something went wrong!!!  Please try again.</string>
     <string name="login_success">Congratulations!!! You have logged in successfully. &#160;</string>
     <string name="select_box">Please select the box</string>
+    <string name="no_subject_available">Currently no subject available</string>
+    <string name="id_not_found">Id not found</string>
 </resources>

@@ -24,142 +24,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!--
-                                <HorizontalScrollView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scrollbars="none">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="@dimen/_60sdp"
-                                        android:layout_marginTop="@dimen/_10sdp"
-                                        android:orientation="horizontal">
-
-                                        <LinearLayout
-                                            android:layout_width="@dimen/_100sdp"
-                                            android:layout_height="@dimen/_60sdp"
-                                            android:layout_marginLeft="@dimen/_5sdp"
-                                            android:layout_marginRight="@dimen/_5sdp"
-                                            android:background="@drawable/btn_white"
-                                            android:backgroundTint="@color/light_grey"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <CustomFonts.TextView_Regular
-                                                android:id="@+id/tv_subjectName"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Subject Name"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-
-                                            <CustomFonts.TextView_Regular
-                                                android:id="@+id/tv_percentage"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:layout_marginTop="@dimen/_5sdp"
-                                                android:text="50 %"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="@dimen/_100sdp"
-                                            android:layout_height="@dimen/_60sdp"
-                                            android:layout_marginLeft="@dimen/_5sdp"
-                                            android:layout_marginRight="@dimen/_5sdp"
-                                            android:background="@drawable/btn_white"
-                                            android:backgroundTint="@color/light_grey"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <CustomFonts.TextView_Regular
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Subject Name"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-
-                                            <CustomFonts.TextView_Regular
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:layout_marginTop="@dimen/_5sdp"
-                                                android:text="50 %"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="@dimen/_100sdp"
-                                            android:layout_height="@dimen/_60sdp"
-                                            android:layout_marginLeft="@dimen/_5sdp"
-                                            android:layout_marginRight="@dimen/_5sdp"
-                                            android:background="@drawable/btn_white"
-                                            android:backgroundTint="@color/light_grey"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <CustomFonts.TextView_Regular
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Subject Name"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-
-                                            <CustomFonts.TextView_Regular
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:layout_marginTop="@dimen/_5sdp"
-                                                android:text="50 %"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="@dimen/_100sdp"
-                                            android:layout_height="@dimen/_60sdp"
-                                            android:layout_marginLeft="@dimen/_5sdp"
-                                            android:layout_marginRight="@dimen/_5sdp"
-                                            android:background="@drawable/btn_white"
-                                            android:backgroundTint="@color/light_grey"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <CustomFonts.TextView_Regular
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="Subject Name"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-
-                                            <CustomFonts.TextView_Regular
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:layout_marginTop="@dimen/_5sdp"
-                                                android:text="50 %"
-                                                android:textColor="@color/black"
-                                                android:textSize="@dimen/_12sdp" />
-                                        </LinearLayout>
-                                    </LinearLayout>
-                                </HorizontalScrollView>
-                -->
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:scrollbars="none"
                     android:background="@drawable/btn_white" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@color/light_grey" />
 
                 <FrameLayout

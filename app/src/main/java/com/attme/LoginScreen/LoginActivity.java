@@ -151,10 +151,17 @@ public class LoginActivity extends Activity {
                     public void onResponse(Call<Login> call, Response<Login> response) {
                         progressBar.setVisibility(View.GONE);
                         if (response.body() != null && response.body().getOutput().equals("success")) {
-                            new ShardPref(LoginActivity.this).saveValue("isLogin", "true");
-                            Intent intent = new Intent(LoginActivity.this, Home.class);
-                            startActivity(intent);
-                            finish();
+                            if (response.body().getStudentid() != null) {
+                                new ShardPref(LoginActivity.this).saveValue("isLogin", "true");
+                                new ShardPref(LoginActivity.this).saveValue("studentId", response.body().getStudentid());
+                                Intent intent = new Intent(LoginActivity.this, Home.class);
+                                startActivity(intent);
+                                finish();
+                            }else {
+                                Snackbar snackbar = Snackbar
+                                        .make(relative, getString(R.string.id_not_found), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
                         } else {
                             Snackbar snackbar = Snackbar
                                     .make(relative, getString(R.string.toast_server_error), Snackbar.LENGTH_LONG);

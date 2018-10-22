@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.attme.HomeScreen.Home;
+import com.attme.LoginScreen.LoginActivity;
 import com.attme.LoginScreen.model.Login;
 import com.attme.R;
 import com.attme.remote.ApiService;
@@ -166,8 +167,7 @@ public class SignUpActivity extends Activity {
                     public void onResponse(Call<Login> call, Response<Login> response) {
                         ll_ProgressBar.setVisibility(View.GONE);
                         if (response.body() != null && response.body().getOutput().equals("success")) {
-                            new ShardPref(SignUpActivity.this).saveValue("isLogin", "true");
-                            Intent intent = new Intent(SignUpActivity.this, Home.class);
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
